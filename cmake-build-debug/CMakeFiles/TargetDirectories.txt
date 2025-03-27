@@ -1,0 +1,6 @@
+C:/Users/Roman/Desktop/ratio_t_test/cmake-build-debug/CMakeFiles/ratio_t_test.dir
+C:/Users/Roman/Desktop/ratio_t_test/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Roman/Desktop/ratio_t_test/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/Roman/Desktop/ratio_t_test/cmake-build-debug/lib/ratio_t/CMakeFiles/ratio_t.dir
+C:/Users/Roman/Desktop/ratio_t_test/cmake-build-debug/lib/ratio_t/CMakeFiles/edit_cache.dir
+C:/Users/Roman/Desktop/ratio_t_test/cmake-build-debug/lib/ratio_t/CMakeFiles/rebuild_cache.dir
