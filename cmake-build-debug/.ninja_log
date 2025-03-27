@@ -1,12 +1,12 @@
 # ninja log v6
-2	237	7648030780368243	build.ninja	ba989a01039b07cd
-5	589	7647993027911951	lib/ratio_t/CMakeFiles/ratio_t.dir/src/ratio_t.cpp.obj	31c0bc04afce0a51
-5	1287	7648019118384547	CMakeFiles/ratio_t_test.dir/src/Test.cpp.obj	b9bee5424f722f7c
-590	676	7647993033755746	lib/ratio_t/libratio_t.a	baf288e1ae43c63e
-5	633	7648018813520020	CMakeFiles/ratio_t_test.dir/src/main.cpp.obj	502b0d24a526e297
-1287	1394	7648019131215601	ratio_t_test.exe	7bfa0f65a46a6c6e
-18	746	7648100549317672	lib/ratio_t/CMakeFiles/ratio_t.dir/src/ratio_t.cpp.obj	31c0bc04afce0a51
-25	831	7648100549400864	CMakeFiles/ratio_t_test.dir/src/main.cpp.obj	502b0d24a526e297
-747	836	7648100556613044	lib/ratio_t/libratio_t.a	baf288e1ae43c63e
+2	237	7648127227183429	build.ninja	ba989a01039b07cd
 31	1577	7648100549452849	CMakeFiles/ratio_t_test.dir/src/Test.cpp.obj	b9bee5424f722f7c
+18	746	7648100549317672	lib/ratio_t/CMakeFiles/ratio_t.dir/src/ratio_t.cpp.obj	31c0bc04afce0a51
+747	836	7648100556613044	lib/ratio_t/libratio_t.a	baf288e1ae43c63e
+25	831	7648100549400864	CMakeFiles/ratio_t_test.dir/src/main.cpp.obj	502b0d24a526e297
 1577	1721	7648100564918105	ratio_t_test.exe	7bfa0f65a46a6c6e
+3	305	7648127227183429	build.ninja	ba989a01039b07cd
+7	705	7648127227644468	lib/ratio_t/CMakeFiles/ratio_t.dir/src/ratio_t.cpp.obj	31c0bc04afce0a51
+705	818	7648127234626229	lib/ratio_t/libratio_t.a	baf288e1ae43c63e
+14	1561	7648127227715752	CMakeFiles/ratio_t_test.dir/src/Test.cpp.obj	b9bee5424f722f7c
+1561	1699	7648127243188016	ratio_t_test.exe	7bfa0f65a46a6c6e
