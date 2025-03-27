@@ -27,8 +27,11 @@ public:
     ratio_t operator+() const;
     ratio_t operator-() const;
 
-    std::strong_ordering operator<=>(const ratio_t& ratio) const;
+    std::partial_ordering operator<=>(const ratio_t& ratio) const;
+    std::partial_ordering operator<=>(long long num) const;
+
     bool operator==(const ratio_t& ratio) const;
+    bool operator==(long long num) const;
 
     explicit operator double() const;
 
@@ -39,6 +42,11 @@ public:
     ratio_t& ceil();
     ratio_t& floor();
     ratio_t& round();
+
+    bool isPlusInf() const;
+    bool isMinusInf() const;
+    bool isInf() const;
+    bool isNaN() const;
 
     ~ratio_t() = default;
 

@@ -23,7 +23,7 @@ ratio_t::ratio_t(long long numerator, long long denominator) :
 
 ratio_t& ratio_t::reduce()
 {
-    if (m_numerator == 0 && m_denominator == 0)
+    if (isNaN())
     {
         return *this;
     }
@@ -52,17 +52,17 @@ ratio_t& ratio_t::reduce()
 
 ratio_t& ratio_t::operator+=(const ratio_t& ratio)
 {
-    if (m_numerator == 0 && m_denominator == 0)
+    if (isNaN())
     {
         return *this;
     }
-    if (ratio.m_numerator == 0 && ratio.m_denominator == 0)
+    if (ratio.isNaN())
     {
         m_numerator = 0;
         m_denominator = 0;
         return *this;
     }
-    if (std::abs(m_numerator) == 1 && m_denominator == 0)
+    if (isInf())
     {
         if (ratio.m_numerator == -m_numerator && ratio.m_denominator == 0)
         {
@@ -95,9 +95,9 @@ ratio_t& ratio_t::operator*=(const ratio_t& ratio)
 
 ratio_t& ratio_t::operator/=(const ratio_t& ratio)
 {
-    if (std::abs(m_numerator) == 1 && m_denominator == 0)
+    if (isInf())
     {
-        if (std::abs(ratio.m_numerator) == 1 && ratio.m_denominator == 0)
+        if (ratio.isInf())
         {
             m_numerator = m_numerator * ratio.m_numerator;
             m_denominator = 1;
@@ -122,47 +122,59 @@ ratio_t ratio_t::operator-() const
     return newRatio;
 }
 
-std::strong_ordering ratio_t::operator<=>(const ratio_t& ratio) const
+std::partial_ordering ratio_t::operator<=>(const ratio_t& ratio) const
 {
+    if (isNaN() || ratio.isNaN())
+    {
+        return std::partial_ordering::unordered;
+    }
     if (m_denominator == 0 && ratio.m_denominator == 0)
     {
-        if (m_numerator == 0)
-        {
-            if (ratio.m_numerator == 0)
-            {
-                return std::strong_ordering::equal;
-            }
-            if (ratio.m_numerator == -1)
-            {
-                return std::strong_ordering::greater;
-            }
-            return std::strong_ordering::less;
-        }
-        if (m_numerator == 1)
-        {
-            return ratio.m_numerator == 1
-                ? std::strong_ordering::equal : std::strong_ordering::greater;
-        }
-        return ratio.m_numerator == -1
-                ? std::strong_ordering::equal : std::strong_ordering::less;
+        return m_numerator <=> ratio.m_numerator;
     }
     if (m_denominator == 0)
     {
-        return m_numerator == 0 || m_numerator == -1
-            ? std::strong_ordering::less : std::strong_ordering::greater;
+        return m_numerator == -1 ? std::partial_ordering::less : std::partial_ordering::greater;
     }
     if (ratio.m_denominator == 0)
     {
-        return ratio.m_numerator == 0 || ratio.m_numerator == -1
-            ? std::strong_ordering::greater : std::strong_ordering::less;
+        return ratio.m_numerator == -1 ? std::partial_ordering::greater : std::partial_ordering::less;
+    }
+    return (m_numerator * ratio.m_denominator) <=> (ratio.m_numerator * m_denominator);
+}
+
+std::partial_ordering ratio_t::operator<=>(long long num) const
+{
+    if (m_denominator == 0)
+    {
+        if (m_numerator == 0)
+        {
+            return std::partial_ordering::unordered;
+        }
+        return m_numerator == -1 ? std::partial_ordering::less : std::partial_ordering::greater;
     }
 
-    return (m_numerator * ratio.m_denominator) <=> (ratio.m_numerator * m_denominator);
+    return m_numerator <=> (num * m_denominator);
 }
 
 bool ratio_t::operator==(const ratio_t& ratio) const
 {
+    if (isNaN() || ratio.isNaN())
+    {
+        return false;
+    }
+
     return m_numerator == ratio.m_numerator && m_denominator == ratio.m_denominator;
+}
+
+bool ratio_t::operator==(long long num) const
+{
+    if (isNaN())
+    {
+        return false;
+    }
+
+    return m_denominator * num == m_numerator;
 }
 
 ratio_t operator+(ratio_t firstRatio, const ratio_t& secondRatio)
@@ -285,7 +297,7 @@ std::istream& operator>>(std::istream& is, ratio_t& ratio)
 
 ratio_t& ratio_t::pow(long long power)
 {
-    if (m_numerator == 0 && m_denominator == 0)
+    if (isNaN())
     {
         return *this;
     }
@@ -333,4 +345,24 @@ ratio_t& ratio_t::floor()
 ratio_t& ratio_t::round()
 {
     return (*this += ratio_t(1, 2)).floor();
+}
+
+bool ratio_t::isPlusInf() const
+{
+    return m_numerator == 1 && m_denominator == 0;
+}
+
+bool ratio_t::isMinusInf() const
+{
+    return m_numerator == -1 && m_denominator == 0;
+}
+
+bool ratio_t::isInf() const
+{
+    return std::abs(m_numerator) == 1 && m_denominator == 0;
+}
+
+bool ratio_t::isNaN() const
+{
+    return m_numerator == 0 && m_denominator == 0;
 }
