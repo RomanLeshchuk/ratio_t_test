@@ -149,28 +149,33 @@ bool Test::isCorrectComparison()
 {
     bool ok = ratio_t(2ll) < ratio_t(7, 2);
     ok = ok && (ratio_t(7, 2) > ratio_t(2ll));
-    ok = ok && (2ll < ratio_t(7, 2));
-    ok = ok && (ratio_t(7, 2) > 2ll);
+    ok = ok && (2 < ratio_t(7, 2));
+    ok = ok && (ratio_t(7, 2) > 2);
 
-    ok = ok && (ratio_t(2.0) == 2ll);
-    ok = ok && (ratio_t(1.9) < 2ll);
-    ok = ok && (ratio_t(2.1) > 2ll);
-    ok = ok && (ratio_t(2.0) <= 2ll);
-    ok = ok && (ratio_t(2.0) >= 2ll);
-    ok = ok && (ratio_t(1.9) <= 2ll);
-    ok = ok && (ratio_t(2.1) >= 2ll);
-    ok = ok && !(ratio_t(2.0) < 2ll);
-    ok = ok && !(ratio_t(2.0) > 2ll);
+    ok = ok && (ratio_t(2ll) == 2);
+    ok = ok && (ratio_t(3ll) != 2);
+    ok = ok && (2 == ratio_t(2ll));
+    ok = ok && (2 != ratio_t(3ll));
+
+    ok = ok && (ratio_t(2.0) == 2);
+    ok = ok && (ratio_t(1.9) < 2);
+    ok = ok && (ratio_t(2.1) > 2);
+    ok = ok && (ratio_t(2.0) <= 2);
+    ok = ok && (ratio_t(2.0) >= 2);
+    ok = ok && (ratio_t(1.9) <= 2);
+    ok = ok && (ratio_t(2.1) >= 2);
+    ok = ok && !(ratio_t(2.0) < 2);
+    ok = ok && !(ratio_t(2.0) > 2);
 
     ok = ok && (ratio_t(2, 3) > ratio_t(0.6666));
     ok = ok && (ratio_t(2, 3) < ratio_t(0.6667));
     ok = ok && (ratio_t(2, 3) > ratio_t(0.6666));
     ok = ok && (ratio_t(2, 3) < ratio_t(0.6667));
 
-    ok = ok && (ratio_t(1, 0) > 99999ll);
-    ok = ok && (ratio_t(-1, 0) < -99999ll);
-    ok = ok && (99999ll < ratio_t(1, 0));
-    ok = ok && (-99999ll > ratio_t(-1, 0));
+    ok = ok && (ratio_t(1, 0) > 99999);
+    ok = ok && (ratio_t(-1, 0) < -99999);
+    ok = ok && (99999 < ratio_t(1, 0));
+    ok = ok && (-99999 > ratio_t(-1, 0));
 
     ok = ok && (ratio_t(1, 0) > ratio_t(99999ll));
     ok = ok && (ratio_t(-1, 0) < ratio_t(-99999ll));
@@ -194,9 +199,9 @@ bool Test::isCorrectComparison()
     ok = ok && !(ratio_t(0, 0) > ratio_t(0, 0));
     ok = ok && !(ratio_t(0, 0) == ratio_t(0, 0));
 
-    ok = ok && !(ratio_t(0, 0) < 42ll);
-    ok = ok && !(ratio_t(0, 0) > 42ll);
-    ok = ok && !(ratio_t(0, 0) == 42ll);
+    ok = ok && !(ratio_t(0, 0) < 42);
+    ok = ok && !(ratio_t(0, 0) > 42);
+    ok = ok && !(ratio_t(0, 0) == 42);
 
     return ok;
 }
